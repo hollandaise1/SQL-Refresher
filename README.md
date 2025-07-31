@@ -1,9 +1,33 @@
 # SQL-Refresher
 SQL Refresher using PostgreSQL
-- How to remove duplicates?
-- How to use LEFT JOIN and WHERE safely?
+- How to remove duplicates? Either through `DISTINCT` or `GROUP BY`. Using both at the same time is not necessary. In fact, if have `GROUP BY`, `DISTINCT` does nothing.
 - What are the types of the joins we have? And when to use them?
+<img width="600" height="472" alt="image" src="https://github.com/user-attachments/assets/f0ba10e8-a930-4af2-9a59-971ffda035dd" />
+<img width="981" height="464" alt="Screenshot 2025-07-30 at 12 40 17" src="https://github.com/user-attachments/assets/9b478a31-9f64-4d90-8209-819c9fa956af" />
+Table A: Employee
+|emp_id|
+---------
+|1|
+|2|
+|3|
+|4|
+
+Table B: Salary
+|emp_id| emp_sal|
+---------
+|1| 3000
+|3| 6000
+
+select a.emp_id, b.emp_sal from a left join b on a.emp_id = b.emp_id where b.emp_id is null
+
+- How to use LEFT JOIN and WHERE safely?
 - When to use IN and when to use EXISTS? How about LIKE? Is there a NOT LIKE?
+- UNION ALL vs UNION:
+- | Clause      | Combines Rows | Removes Duplicates   | Requires Column Match |
+| ----------- | ------------- | -------------------- | --------------------- |
+| `UNION`     | ✅             | ✅                    | ✅ Yes                 |
+| `UNION ALL` | ✅             | ❌ (keeps duplicates) | ✅ Yes                 |
+
 - Review Window Function
 - Review INDEX
 - Optimization techniques
